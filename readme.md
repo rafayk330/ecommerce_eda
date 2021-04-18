@@ -1,4 +1,4 @@
-# ECOMMERCE EDA
+# ECOMMERCE Exploratory Data Analysis
 ## **PROJECT SYNOPSIS**
 > In this project, the EDA protocol for an ecommerce dataset has been shown. The analysis reveals some insightful information for this ecommerce retailer operating in the UK, so do check it out!
 ___
@@ -43,12 +43,14 @@ Next, we import the dataset.
 df = pd.read_csv("data.csv",engine='python')
 df.head()
 ```
+![1](https://user-images.githubusercontent.com/76584894/115151681-662a2800-a087-11eb-9cef-c0c04cde2ff1.JPG)
 ### **Data Preprocessing**
 We now proceed towards preprocessing the data. For this, there are a few steps that need to be followed. These stay the same more or less, regardless of the nature of data:
 1. Dataset Description
 ```
 df.describe(include='all')
 ```
+![2](https://user-images.githubusercontent.com/76584894/115151690-70e4bd00-a087-11eb-8e31-82c613ccc925.JPG)
 2. Identification of Missing Data in Each Attribute
 ```
 missing_data = df.isnull()
@@ -57,14 +59,20 @@ for columns in missing_data.columns.values.tolist():
     print(missing_data[columns].value_counts())
     print("")
 ```
+![3](https://user-images.githubusercontent.com/76584894/115151702-7a6e2500-a087-11eb-91ec-4df2ea58da76.JPG)
+
 3. Identification of the rows which have missing data
 ```
 df[df.isnull().any(axis=1)].head()
 ```
+![4](https://user-images.githubusercontent.com/76584894/115151711-835ef680-a087-11eb-8b03-0902c7706f00.JPG)
+
 4. Description of Categorical Variables
 ```
 df.describe(include=["object"])
 ```
+![5](https://user-images.githubusercontent.com/76584894/115151718-8b1e9b00-a087-11eb-99df-7b75318fff03.JPG)
+
 5. Removing the Rows with Missing Data
 ```
 df.dropna(inplace=True)
@@ -73,10 +81,14 @@ df.dropna(inplace=True)
 ```
 df.rename(index=str, columns={"InvoiceNo":"invoice_no","StockCode":"stock_code","Description":"description","Quantity":"quantity","InvoiceDate":"invoice_date","UnitPrice":"unit_price","CustomerID":"customer_id","Country":"country"},inplace=True)
 ```
+![6](https://user-images.githubusercontent.com/76584894/115151745-b1443b00-a087-11eb-914d-2c160a4c84f1.JPG)
+
 7. Identifying the Datatype for Each Attribute
 ```
 df.dtypes
 ```
+![7](https://user-images.githubusercontent.com/76584894/115151775-d46eea80-a087-11eb-8360-7fab0a53472f.JPG)
+
 ___
 ___
 > **We now move towards preprocessing/wrangling which is case-specific and may or may not have to be repeated for every dataset.**
