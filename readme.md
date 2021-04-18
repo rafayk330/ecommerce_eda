@@ -101,7 +101,10 @@ df['invoice_date'] = pd.to_datetime(df["invoice_date"], format='%m/%d/%Y %H:%M')
 ***"description" to all lower caps***
 ```
 df["description"] = df["description"].str.lower()
+df[["description","invoice_date"]].head()
 ```
+![1](https://user-images.githubusercontent.com/76584894/115151866-33ccfa80-a088-11eb-8ad0-25ffb7fa541f.JPG)
+
 ***"customer_id" to int64 dtype***
 ```
 df["customer_id"] = df.customer_id.astype("int64")
@@ -110,7 +113,7 @@ df.customer_id.dtype
 ***Removing "quantity" with negative values***
 ```
 df = df[df["quantity"] > 0]
-df["quantity"]
+df["quantity"].head()
 ```
 ***Adding New Columns for Data-Parsing***
 ```
@@ -131,6 +134,7 @@ df_cleaned = df[['invoice_no','invoice_date','stock_code','description','quantit
 
 df_cleaned.head()
 ```
+![8](https://user-images.githubusercontent.com/76584894/115151913-6e369780-a088-11eb-97a2-b06ee152d035.JPG)
 
 ```
 df_cleaned.to_excel("cleaned_data.xlsx",index=False)
@@ -149,7 +153,10 @@ cust_orders = cust_orders.reset_index()
 cust_orders.drop("index",axis=1,inplace=True)
 cust_orders.rename(columns={"invoice_no":"no_of_orders"}, inplace=True)
 cust_orders = cust_orders.head(20)
+cust_orders.head()
 ```
+![9](https://user-images.githubusercontent.com/76584894/115151951-958d6480-a088-11eb-8143-3b03694d145a.JPG)
+
 > For Plotting it
 ```
 x = cust_orders["customer_id"]
@@ -161,6 +168,9 @@ plt.ylabel("No. of Orders Placed")
 plt.title("Top Customers With the Greatest No. of Orders Placed")
 plt.show()
 ```
+![10](https://user-images.githubusercontent.com/76584894/115151996-c372a900-a088-11eb-85a1-f385c0d55a4c.png)
+
+
 ***Top 10 Countries with the Most No. of Orders Placed***
 ```
 country_orders = df[["country","invoice_no"]]
@@ -171,6 +181,10 @@ country_orders.rename(columns={"invoice_no":"no_of_orders"},inplace=True)
 country_orders = country_orders.head(10)
 country_orders
 ```
+![11](https://user-images.githubusercontent.com/76584894/115152144-5b709280-a089-11eb-98e3-bb8fe4ed37d8.JPG)
+
+
+
 > For Plotting it
 ```
 x = country_orders["no_of_orders"]
@@ -182,6 +196,11 @@ plt.ylabel("Country")
 plt.title("No. of Orders wrt to Country")
 plt.show()
 ```
+![12](https://user-images.githubusercontent.com/76584894/115152146-61667380-a089-11eb-8da9-8f6521ea9394.png)
+
+
+
+
 ***Top 20 Customers with the Greatest Spending***
 ```
 customer_spend = df[["customer_id","amount_spent"]]
@@ -191,6 +210,9 @@ customer_spend = customer_spend.reset_index(drop=True)
 customer_spend = customer_spend.head(20)
 customer_spend
 ```
+![13](https://user-images.githubusercontent.com/76584894/115152155-688d8180-a089-11eb-8cea-e4a7ad29d425.JPG)
+
+
 > For Plotting it
 ```
 x = customer_spend["customer_id"]
@@ -202,6 +224,11 @@ plt.ylabel("Amount Spent")
 plt.title("Greatest Spenders")
 plt.show()
 ```
+
+![14](https://user-images.githubusercontent.com/76584894/115152163-6deacc00-a089-11eb-8b3c-e00054f7041e.png)
+
+
+
 ***Top 10 Countries with the Greatest Spending***
 ```
 country_spend = df[["country","amount_spent"]]
@@ -211,6 +238,9 @@ country_spend = country_spend.head(10)
 country_spend = country_spend.reset_index(drop=True)
 country_spend
 ```
+![15](https://user-images.githubusercontent.com/76584894/115152172-76db9d80-a089-11eb-90e8-74bd24994b24.JPG)
+
+
 > For Plotting it
 ```
 plt.figure(figsize=(24,8))
@@ -220,6 +250,11 @@ plt.ylabel("Amount Spent")
 plt.title("Greatest Spending Countries")
 plt.show()
 ```
+
+![16](https://user-images.githubusercontent.com/76584894/115152175-7ba05180-a089-11eb-8968-1a0388c9c19c.png)
+
+
+
 > **TO BE CONTINUED FROM HERE!**
 
 ___
